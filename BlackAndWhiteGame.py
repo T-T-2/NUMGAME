@@ -10,6 +10,7 @@ while True:
     if N == '1':
         # 플레이어와 컴퓨터의 카드 초기화한다.  (1부터 10까지의 숫자)
         computer_cards = list(range(1, 11))
+        player_cards = list(range(1, 11))
         shuffle(computer_cards)  # 컴퓨터의 카드는 무작위로 섞인다.
 
         # 결과를 저장할 리스트 초기화한다.  (승리, 무승부, 패배 횟수)
@@ -18,6 +19,8 @@ while True:
         # 10번의 게임 진행한다.
         for _ in range(10):
             # 플레이어가 직접 카드를 선택한다.
+            # 플레이어가 사용할 수 있는 카드 보여준다.
+            print(f"현재 플레이어가 가지고 있는 카드: {player_cards}")
             while True:
                 try:
                     player_card = int(input("플레이어가 낼 카드를 선택하세요 (1-10): "))
@@ -27,6 +30,8 @@ while True:
                 except ValueError:
                     print("잘못된 입력입니다. 1부터 10 사이의 숫자를 입력하세요.")
 
+            # 선택한 카드는 소모된다.
+            player_cards.remove(player_card)
             # 컴퓨터는 카드 더미에서 가장 앞의 카드를 선택한다.
             computer_card = computer_cards.pop(0)
 
